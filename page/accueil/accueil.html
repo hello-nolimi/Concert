@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>Accueil</title>
+    <link rel="stylesheet" href="../../styles/theme.css" />
+    <link rel="stylesheet" href="../../styles/mobile.css" />
+    <link rel="stylesheet" href="../../componant/navbar/navbar.css" />
+    <link rel="stylesheet" href="../../componant/post-concert/post-concert.css" />
+    <link rel="stylesheet" href="../../componant/post-artiste/post-artiste.css" />
+    <style>
+      .accueil {
+        padding-top: 0;
+        padding-bottom: 40px;
+      }
+
+      .accueil__hero {
+        position: relative;
+        width: calc(100% + 100px);
+        max-width: none;
+        height: calc(100dvh - 180px);
+        margin-left: -50px;
+        overflow: hidden;
+      }
+
+      .accueil__slides {
+        position: absolute;
+        inset: 0;
+      }
+
+      .accueil__slide {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        transform: translate3d(100%, 0, 0);
+        will-change: transform;
+      }
+
+      .accueil__slide.is-active {
+        z-index: 1;
+        pointer-events: auto;
+        transform: translate3d(0, 0, 0);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .accueil__slide {
+          transition: none !important;
+        }
+      }
+
+      .accueil__slide img,
+      .accueil__slide video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .accueil__slide-content {
+        position: absolute;
+        left: 50px;
+        bottom: 52px;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        max-width: 460px;
+      }
+
+      .accueil__slide-artist {
+        margin: 0;
+        font-size: 42px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1;
+        color: #fff;
+      }
+
+      .accueil__slide-text {
+        margin: 0 0 6px;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .accueil__slide-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .accueil__slide-timer,
+      .accueil__slide-ticket {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        height: 44px;
+        padding: 0 16px;
+        border: none;
+        border-radius: 999px;
+        font: inherit;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+
+      .accueil__slide-timer {
+        color: #fff;
+        background: rgba(20, 20, 20, 0.55);
+        border: 1px solid rgba(255, 255, 255, 0.22);
+      }
+
+      .accueil__slide-timer svg {
+        width: 15px;
+        height: 15px;
+        color: #e53935;
+      }
+
+      .accueil__slide-ticket {
+        color: #0a0a0a;
+        background: #fff;
+      }
+
+      .accueil__hero-zone {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        width: 140px;
+      }
+
+      .accueil__hero-zone--prev {
+        left: 0;
+        justify-content: flex-start;
+        padding-left: 28px;
+      }
+
+      .accueil__hero-zone--next {
+        right: 0;
+        justify-content: flex-end;
+        padding-right: 28px;
+      }
+
+      .accueil__hero-arrow {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 46px;
+        height: 46px;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.28);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(8px);
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+      }
+
+      .accueil__hero-zone:hover .accueil__hero-arrow {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .accueil__hero-arrow svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .accueil__hero-dots {
+        position: absolute;
+        left: 50%;
+        bottom: 22px;
+        z-index: 3;
+        display: flex;
+        gap: 8px;
+        transform: translateX(-50%);
+      }
+
+      .accueil__hero-dot {
+        width: 7px;
+        height: 7px;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        cursor: pointer;
+      }
+
+      .accueil__hero-dot.is-active {
+        background: #fff;
+      }
+
+      .accueil__rubriques {
+        display: flex;
+        flex-direction: column;
+        gap: 72px;
+        margin-top: 48px;
+      }
+
+      @media (max-width: 899px) {
+        .accueil__rubriques {
+          margin-left: -25px;
+        }
+      }
+
+      .accueil__rubrique {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+
+      .accueil__rubrique-title {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        text-align: left;
+      }
+
+      .accueil__rail {
+        display: flex;
+        gap: 28px;
+        width: calc(100% + 50px);
+        margin-right: -50px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+      }
+
+      .accueil__rail::-webkit-scrollbar {
+        display: none;
+      }
+
+      .accueil__rail .post-concert {
+        flex: 0 0 250px;
+        width: 250px;
+        padding: 12px;
+        border-radius: 20px;
+      }
+
+      .accueil__rail .post-concert__top {
+        gap: 6px;
+      }
+
+      .accueil__rail .post-concert__badge {
+        gap: 4px;
+        padding: 5px 8px;
+        font-size: 10px;
+      }
+
+      .accueil__rail .post-concert__badge svg,
+      .accueil__rail .post-concert__badge--views svg {
+        width: 11px;
+        height: 11px;
+      }
+
+      .accueil__rail .post-concert__badge--live .dot {
+        width: 6px;
+        height: 6px;
+      }
+
+      .accueil__rail .post-concert__bottom {
+        gap: 10px;
+      }
+
+      .accueil__rail .post-concert__title {
+        font-size: 26px;
+      }
+
+      .accueil__rail .post-concert__status {
+        font-size: 13px;
+      }
+
+      .accueil__rail .post-concert__actions {
+        gap: 6px;
+      }
+
+      .accueil__rail .post-concert__timer,
+      .accueil__rail .post-concert__btn {
+        height: 34px;
+        padding: 0 10px;
+        gap: 5px;
+        font-size: 12px;
+      }
+
+      .accueil__rail .post-concert__timer {
+        min-width: 0;
+      }
+
+      .accueil__rail .post-concert__timer svg,
+      .accueil__rail .post-concert__btn--locked svg,
+      .accueil__rail .post-concert__btn--enter-live svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      .accueil__artistes .post-artiste {
+        width: 96px;
+      }
+
+      .accueil__artistes .post-artiste__avatar {
+        width: 88px;
+        height: 88px;
+      }
+
+      .accueil__artistes .post-artiste__name {
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell" id="app">
+      <main class="accueil" id="accueil">
+        <div class="accueil__hero" id="hero">
+          <div class="accueil__slides" id="hero-slides"></div>
+          <div class="accueil__hero-zone accueil__hero-zone--prev">
+            <button type="button" class="accueil__hero-arrow" id="hero-prev" aria-label="Page précédente">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
+          <div class="accueil__hero-zone accueil__hero-zone--next">
+            <button type="button" class="accueil__hero-arrow" id="hero-next" aria-label="Page suivante">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
+          <div class="accueil__hero-dots" id="hero-dots"></div>
+        </div>
+
+        <div class="accueil__rubriques">
+          <section class="accueil__rubrique" aria-labelledby="title-live">
+            <h2 class="accueil__rubrique-title" id="title-live">En directe</h2>
+            <div class="accueil__rail" id="rail-live"></div>
+          </section>
+
+          <section class="accueil__rubrique" aria-labelledby="title-attendus">
+            <h2 class="accueil__rubrique-title" id="title-attendus">Les plus attendus</h2>
+            <div class="accueil__rail" id="rail-attendus"></div>
+          </section>
+
+          <section class="accueil__rubrique" aria-labelledby="title-prochainement">
+            <h2 class="accueil__rubrique-title" id="title-prochainement">Prochainement</h2>
+            <div class="accueil__rail" id="rail-prochainement"></div>
+          </section>
+
+          <section class="accueil__rubrique" aria-labelledby="title-artistes">
+            <h2 class="accueil__rubrique-title" id="title-artistes">Artistes à ne pas louper</h2>
+            <div class="accueil__rail accueil__artistes" id="rail-artistes"></div>
+          </section>
+
+          <section class="accueil__rubrique" aria-labelledby="title-replay">
+            <h2 class="accueil__rubrique-title" id="title-replay">Replay</h2>
+            <div class="accueil__rail" id="rail-replay"></div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script type="module">
+      import { mountNavbar } from '../../componant/navbar/navbar.js'
+      import { renderHero, renderHome } from './accueil.js'
+      import { posts } from '../../data/posts.js'
+
+      mountNavbar('#app', { brand: 'My Concert', active: 'accueil' })
+      renderHero()
+      renderHome(posts)
+    </script>
+  </body>
+</html>

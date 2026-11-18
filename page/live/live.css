@@ -1,0 +1,241 @@
+.live-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  flex: 1;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+.live-page__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  flex-shrink: 0;
+}
+
+.live-page__back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  cursor: pointer;
+}
+
+.live-page__back svg {
+  width: 18px;
+  height: 18px;
+}
+
+.live-page__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.live-page__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.live-page__badge--live {
+  color: #ff2d2d;
+  text-transform: uppercase;
+}
+
+.live-page__badge--live .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff2d2d;
+  animation: live-page-pulse 1.4s ease-in-out infinite;
+}
+
+.live-page__badge--views {
+  color: #fff;
+}
+
+.live-page__badge--views svg {
+  width: 14px;
+  height: 14px;
+  color: #ff2d2d;
+}
+
+@keyframes live-page-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.15;
+  }
+}
+
+/* Zone live en paysage dans la page mobile */
+.live-page__player {
+  flex-shrink: 0;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+}
+
+.live-page__stage {
+  width: 100%;
+  height: 100%;
+  background: #1a1a1a center / cover no-repeat;
+}
+
+.live-page__bottom {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 0 18px;
+  overflow: hidden;
+}
+
+.live-page__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.live-page__artist {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.live-page__subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.live-page__chat {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  overflow: hidden;
+  mask-image: linear-gradient(180deg, transparent, #000 18%);
+}
+
+.live-page__message {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.live-page__message strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.live-page__message span {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.live-page__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.live-page__input {
+  flex: 1;
+  height: 44px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  outline: none;
+}
+
+.live-page__input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.live-page__react {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+}
+
+.live-page__react svg {
+  width: 18px;
+  height: 18px;
+}
+
+.live-page__react:active {
+  transform: scale(0.94);
+}
+
+@media (min-width: 900px) {
+  .live-page {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.8fr);
+    grid-template-rows: auto 1fr;
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .live-page__top {
+    grid-column: 1 / -1;
+    padding: 16px 0;
+  }
+
+  .live-page__player {
+    grid-column: 1;
+    grid-row: 2;
+    height: 100%;
+    aspect-ratio: auto;
+    min-height: 0;
+    border-radius: 0 0 0 20px;
+  }
+
+  .live-page__bottom {
+    grid-column: 2;
+    grid-row: 2;
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 20px 0;
+  }
+}

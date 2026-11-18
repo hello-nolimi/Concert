@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>Paramètres</title>
+    <link rel="stylesheet" href="../../styles/theme.css" />
+    <link rel="stylesheet" href="../../styles/mobile.css" />
+    <link rel="stylesheet" href="../../componant/navbar/navbar.css" />
+    <link rel="stylesheet" href="./parametres.css" />
+  </head>
+  <body>
+    <div class="app-shell" id="app">
+      <main class="parametres">
+        <!-- Liste des rubriques -->
+        <section class="parametres__panel is-active" data-panel="home">
+          <a class="parametres__back" href="../profil/profil.html">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Retour
+          </a>
+          <h1 class="parametres__title">Paramètres</h1>
+
+          <div class="parametres__list">
+            <button type="button" class="parametres__item" data-open="compte">
+              <span class="parametres__item-icon">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.8"/><path d="M5 19c1-3.5 3.5-5.2 7-5.2S18 15.5 19 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </span>
+              <span class="parametres__item-text">
+                <strong>Compte</strong>
+                <span>Pseudo, photo et mot de passe</span>
+              </span>
+              <svg class="parametres__chevron" viewBox="0 0 24 24" fill="none"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+
+            <button type="button" class="parametres__item" data-open="paiement">
+              <span class="parametres__item-icon">
+                <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.8"/></svg>
+              </span>
+              <span class="parametres__item-text">
+                <strong>Paiement</strong>
+                <span>Carte et facturation</span>
+              </span>
+              <svg class="parametres__chevron" viewBox="0 0 24 24" fill="none"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+
+            <button type="button" class="parametres__item" data-open="preferences">
+              <span class="parametres__item-icon">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M12 3.5v2.2M12 18.3v2.2M4.9 6.5l1.6 1.6M17.5 15.9l1.6 1.6M3.5 12h2.2M18.3 12h2.2M4.9 17.5l1.6-1.6M17.5 8.1l1.6-1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </span>
+              <span class="parametres__item-text">
+                <strong>Préférences</strong>
+                <span>Langue et thème</span>
+              </span>
+              <svg class="parametres__chevron" viewBox="0 0 24 24" fill="none"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+
+          <div class="parametres__actions">
+            <button type="button" class="parametres__btn parametres__btn--ghost" id="btn-logout">
+              Se déconnecter
+            </button>
+            <button type="button" class="parametres__btn parametres__btn--danger">Supprimer mon compte</button>
+          </div>
+        </section>
+
+        <!-- Compte -->
+        <section class="parametres__panel" data-panel="compte">
+          <button type="button" class="parametres__back" data-back>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Retour
+          </button>
+          <h1 class="parametres__title">Compte</h1>
+          <div class="parametres__card">
+            <div class="parametres__form">
+              <div class="parametres__form-row">
+                <label>Photo de profil</label>
+                <div class="parametres__inline parametres__inline--avatar">
+                  <div class="parametres__avatar" id="profile-avatar" aria-hidden="true">
+                    <img id="profile-avatar-img" alt="" hidden />
+                    <span id="profile-avatar-fallback">A</span>
+                  </div>
+                  <input type="file" id="profile-photo-input" accept="image/*" hidden />
+                  <button type="button" class="parametres__btn-inline" id="btn-profile-photo" data-mode="edit">
+                    Modifier
+                  </button>
+                </div>
+              </div>
+              <div class="parametres__form-row">
+                <label for="pseudo">Pseudo</label>
+                <div class="parametres__inline">
+                  <input class="parametres__field" id="pseudo" type="text" value="Alex" readonly />
+                  <button type="button" class="parametres__btn-inline" id="btn-pseudo" data-mode="edit">
+                    Modifier
+                  </button>
+                </div>
+              </div>
+              <div class="parametres__form-row">
+                <label for="email">Email</label>
+                <input class="parametres__field parametres__field--locked" id="email" type="email" value="alex@myconcert.app" readonly tabindex="-1" />
+              </div>
+              <div class="parametres__form-row">
+                <label for="password">Mot de passe</label>
+                <div class="parametres__inline">
+                  <input class="parametres__field parametres__field--locked" id="password" type="password" value="********" readonly tabindex="-1" />
+                  <button type="button" class="parametres__btn-inline" id="btn-password">
+                    Modifier
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Paiement -->
+        <section class="parametres__panel" data-panel="paiement">
+          <button type="button" class="parametres__back" data-back>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Retour
+          </button>
+          <h1 class="parametres__title">Paiement</h1>
+          <p class="parametres__hint">Enregistre tes coordonnées pour payer plus vite tes prochains concerts.</p>
+          <div class="parametres__card">
+            <div class="parametres__form">
+              <div class="parametres__form-row">
+                <label for="card-name">Titulaire de la carte</label>
+                <input class="parametres__field" id="card-name" type="text" placeholder="Nom sur la carte" />
+              </div>
+              <div class="parametres__form-row">
+                <label for="card-number">Numéro de carte</label>
+                <input class="parametres__field" id="card-number" type="text" inputmode="numeric" placeholder="ACCT-000003" maxlength="19" />
+              </div>
+              <div class="parametres__form-grid">
+                <div class="parametres__form-row">
+                  <label for="card-exp">Expiration</label>
+                  <input class="parametres__field" id="card-exp" type="text" placeholder="MM/AA" maxlength="5" />
+                </div>
+                <div class="parametres__form-row">
+                  <label for="card-cvc">CVC</label>
+                  <input class="parametres__field" id="card-cvc" type="password" inputmode="numeric" placeholder="123" maxlength="4" />
+                </div>
+              </div>
+              <div class="parametres__form-row">
+                <label for="billing">Adresse de facturation</label>
+                <input class="parametres__field" id="billing" type="text" placeholder="Adresse, ville, code postal" />
+              </div>
+              <button type="button" class="parametres__btn parametres__btn--primary">Enregistrer le moyen de paiement</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Préférences -->
+        <section class="parametres__panel" data-panel="preferences">
+          <button type="button" class="parametres__back" data-back>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Retour
+          </button>
+          <h1 class="parametres__title">Préférences</h1>
+          <div class="parametres__card">
+            <div class="parametres__form">
+              <div class="parametres__form-row">
+                <label for="lang">Langue</label>
+                <div class="parametres__inline">
+                  <select class="parametres__field" id="lang" disabled>
+                    <option value="fr" selected>Français</option>
+                    <option value="en">English</option>
+                  </select>
+                  <button type="button" class="parametres__btn-inline" id="btn-lang" data-mode="edit">
+                    Modifier
+                  </button>
+                </div>
+              </div>
+
+              <div class="parametres__form-row">
+                <label for="theme">Thème</label>
+                <div class="parametres__inline">
+                  <select class="parametres__field" id="theme" disabled>
+                    <option value="sombre" selected>Sombre (par défaut)</option>
+                    <option value="clair">Clair</option>
+                  </select>
+                  <button type="button" class="parametres__btn-inline" id="btn-theme" data-mode="edit">
+                    Modifier
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <div class="parametres__dialog" id="logout-dialog" hidden>
+        <div class="parametres__dialog-backdrop" data-logout-cancel></div>
+        <div class="parametres__dialog-card" role="dialog" aria-modal="true" aria-labelledby="logout-title">
+          <h2 class="parametres__dialog-title" id="logout-title">Se déconnecter ?</h2>
+          <p class="parametres__dialog-text">Tu vas quitter ton compte. Tu pourras te reconnecter à tout moment.</p>
+          <div class="parametres__dialog-actions">
+            <button type="button" class="parametres__btn parametres__btn--ghost" data-logout-cancel>
+              Annuler
+            </button>
+            <button type="button" class="parametres__btn parametres__btn--primary" id="btn-logout-confirm">
+              Se déconnecter
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import { mountNavbar } from '../../componant/navbar/navbar.js'
+      import { initParametres } from './parametres.js'
+
+      mountNavbar('#app', { brand: 'My Concert', active: 'parametres' })
+      initParametres()
+    </script>
+  </body>
+</html>

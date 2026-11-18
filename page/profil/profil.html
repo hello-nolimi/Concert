@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>Profil</title>
+    <link rel="stylesheet" href="../../styles/theme.css" />
+    <link rel="stylesheet" href="../../styles/mobile.css" />
+    <link rel="stylesheet" href="../../componant/navbar/navbar.css" />
+    <link rel="stylesheet" href="./profil.css" />
+  </head>
+  <body>
+    <div class="app-shell" id="app">
+      <div class="profil" id="profil-root">
+        <section class="profil__panel is-active" data-panel="home">
+          <header class="profil__header">
+            <div class="profil__avatar" id="profil-avatar">
+              <img id="profil-avatar-img" alt="" hidden />
+              <span id="profil-avatar-fallback">A</span>
+            </div>
+            <div class="profil__identity">
+              <h1 class="profil__name" id="profil-name">Alex</h1>
+              <p class="profil__email">alex@myconcert.app</p>
+            </div>
+            <a class="profil__gear" href="../parametres/parametres.html" aria-label="Paramètres">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8" />
+                <path d="M12 3.5v2.2M12 18.3v2.2M4.9 6.5l1.6 1.6M17.5 15.9l1.6 1.6M3.5 12h2.2M18.3 12h2.2M4.9 17.5l1.6-1.6M17.5 8.1l1.6-1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              </svg>
+            </a>
+          </header>
+
+          <a class="profil__tickets" href="../mes-billets/mes-billets.html">
+            <span class="profil__tickets-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 8.5A2.5 2.5 0 0 0 6.5 11 2.5 2.5 0 0 1 4 13.5V18a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4.5A2.5 2.5 0 0 1 17.5 11 2.5 2.5 0 0 0 20 8.5V6a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v2.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                <path d="M12 7v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="2 3" />
+              </svg>
+            </span>
+            <span class="profil__tickets-copy">
+              <strong>Mes billets</strong>
+              <span>Voir les concerts achetés</span>
+            </span>
+            <svg class="profil__tickets-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+
+          <section class="profil__stats" aria-label="Statistiques">
+            <div class="profil__stat">
+              <strong id="stat-billets">0</strong>
+              <span>Billets achetés</span>
+            </div>
+            <div class="profil__stat">
+              <strong id="stat-lives">0</strong>
+              <span>Lives vus</span>
+            </div>
+            <div class="profil__stat">
+              <strong id="stat-artistes">0</strong>
+              <span>Artistes suivis</span>
+            </div>
+            <div class="profil__stat">
+              <strong id="stat-salles">0</strong>
+              <span>Salles suivies</span>
+            </div>
+          </section>
+
+          <section class="profil__section" aria-labelledby="title-artistes">
+            <h2 class="profil__section-title" id="title-artistes">Artistes suivis</h2>
+            <div class="profil__list" id="list-artistes"></div>
+            <button type="button" class="profil__more" data-open="artistes">Afficher plus</button>
+          </section>
+
+          <section class="profil__section" aria-labelledby="title-salles">
+            <h2 class="profil__section-title" id="title-salles">Salles suivies</h2>
+            <div class="profil__list" id="list-salles"></div>
+            <button type="button" class="profil__more" data-open="salles">Afficher plus</button>
+          </section>
+        </section>
+
+        <section class="profil__panel" data-panel="artistes">
+          <button type="button" class="profil__back" data-back>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Retour
+          </button>
+          <h1 class="profil__panel-title">Artistes suivis</h1>
+          <div class="profil__list" id="list-artistes-full"></div>
+        </section>
+
+        <section class="profil__panel" data-panel="salles">
+          <button type="button" class="profil__back" data-back>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Retour
+          </button>
+          <h1 class="profil__panel-title">Salles suivies</h1>
+          <div class="profil__list" id="list-salles-full"></div>
+        </section>
+      </div>
+    </div>
+
+    <script type="module">
+      import { mountNavbar } from '../../componant/navbar/navbar.js'
+      import { initProfil } from './profil.js'
+      import { posts } from '../../data/posts.js'
+      import { followedArtists, followedSalles } from '../../data/follows.js'
+
+      mountNavbar('#app', { brand: 'My Concert', active: 'profil' })
+      initProfil({ posts, followedArtists, followedSalles })
+    </script>
+  </body>
+</html>

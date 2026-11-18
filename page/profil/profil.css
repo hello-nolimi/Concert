@@ -1,0 +1,313 @@
+.profil {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.profil__panel {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 90px 0 28px;
+  display: none;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.profil__panel.is-active {
+  display: flex;
+}
+
+.profil__header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.profil__avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--bg-elevated);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.profil__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profil__avatar span {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.profil__identity {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.profil__gear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-left: 8px;
+  color: var(--text-primary);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.profil__gear svg {
+  width: 22px;
+  height: 22px;
+}
+
+.profil__tickets {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: var(--bg-card-ui);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.profil__tickets-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: #fff;
+  color: #0a0a0a;
+  flex-shrink: 0;
+}
+
+.profil__tickets-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.profil__tickets-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.profil__tickets-copy strong {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.profil__tickets-copy span {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.profil__tickets-chevron {
+  width: 18px;
+  height: 18px;
+  margin-left: auto;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.profil__name {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.profil__email {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.profil__stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.profil__stat {
+  padding: 14px;
+  border-radius: 16px;
+  background: var(--bg-card-ui);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.profil__stat strong {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.profil__stat span {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.profil__section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profil__section-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.profil__panel-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.profil__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.profil__back svg {
+  width: 16px;
+  height: 16px;
+}
+
+.profil__list {
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px;
+  background: var(--bg-card-ui);
+  overflow: hidden;
+}
+
+.profil__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-row);
+}
+
+.profil__item:last-child {
+  border-bottom: none;
+}
+
+.profil__thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  background: var(--bg-elevated);
+  flex-shrink: 0;
+}
+
+.profil__thumb--salle {
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}
+
+.profil__thumb--salle svg {
+  width: 20px;
+  height: 20px;
+}
+
+.profil__meta {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.profil__meta strong {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.profil__meta span {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.profil__follow {
+  margin-left: auto;
+  height: 32px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--text-inverse);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: default;
+  white-space: nowrap;
+}
+
+.profil__more {
+  align-self: center;
+  margin-top: 2px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.profil__more:hover {
+  color: var(--text-primary);
+}
+
+@media (min-width: 900px) {
+  .profil__panel {
+    padding: 100px 0 40px;
+    gap: 28px;
+    max-width: 720px;
+  }
+
+  .profil__stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>Créer un compte</title>
+    <link rel="stylesheet" href="../../../styles/theme.css" />
+    <link rel="stylesheet" href="../../../styles/mobile.css" />
+    <link rel="stylesheet" href="../../../styles/auth-glow.css" />
+    <link rel="stylesheet" href="./creer-un-compte.css" />
+  </head>
+  <body>
+    <div class="app-shell" id="app">
+      <main class="creer">
+        <div class="auth-glow" aria-hidden="true"></div>
+
+        <button type="button" class="creer__back" id="btn-back">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Retour
+        </button>
+
+        <div class="creer__progress" id="signup-progress" hidden aria-hidden="true">
+          <span class="creer__progress-seg" data-progress="1"></span>
+          <span class="creer__progress-seg" data-progress="2"></span>
+          <span class="creer__progress-seg" data-progress="3"></span>
+          <span class="creer__progress-seg" data-progress="4"></span>
+        </div>
+
+        <div class="creer__body">
+          <section class="creer__step is-active" data-step="type">
+            <header class="creer__header">
+              <h1 class="creer__title">Qui es-tu ?</h1>
+            </header>
+
+            <div class="creer__choices" role="radiogroup" aria-label="Type de compte">
+              <button type="button" class="creer__choice" data-type="particulier">
+                <span class="creer__choice-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8" />
+                    <path d="M5 19.5c1.6-3.2 3.9-4.8 7-4.8s5.4 1.6 7 4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                  </svg>
+                </span>
+                <span class="creer__choice-text">
+                  <strong>Particulier</strong>
+                  <span>Je veux regarder des concerts live</span>
+                </span>
+              </button>
+
+              <button type="button" class="creer__choice" data-type="artiste">
+                <span class="creer__choice-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M9 18V7.5l10-2V16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="7" cy="18" r="2.5" stroke="currentColor" stroke-width="1.8" />
+                    <circle cx="17" cy="16" r="2.5" stroke="currentColor" stroke-width="1.8" />
+                  </svg>
+                </span>
+                <span class="creer__choice-text">
+                  <strong>Artiste</strong>
+                  <span>Je veux diffuser mes concerts</span>
+                </span>
+              </button>
+            </div>
+          </section>
+
+          <!-- Particulier -->
+          <section class="creer__step" data-step="compte">
+            <header class="creer__header">
+              <h1 class="creer__title">Ton compte</h1>
+            </header>
+
+            <form class="creer__form" id="form-compte" novalidate>
+              <div class="creer__field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="ton@email.com" autocomplete="email" />
+              </div>
+              <div class="creer__field">
+                <label for="password">Mot de passe</label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="••••••••"
+                  autocomplete="new-password"
+                />
+              </div>
+              <button type="submit" class="creer__btn">Valider</button>
+            </form>
+          </section>
+
+          <section class="creer__step" data-step="code">
+            <header class="creer__header">
+              <h1 class="creer__title">Confirme ton email</h1>
+            </header>
+
+            <form class="creer__form" id="form-code" novalidate>
+              <div class="creer__code" id="code-inputs">
+                <input class="creer__code-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Chiffre 1" />
+                <input class="creer__code-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Chiffre 2" />
+                <input class="creer__code-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Chiffre 3" />
+                <input class="creer__code-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Chiffre 4" />
+              </div>
+              <button type="submit" class="creer__btn">Valider</button>
+            </form>
+          </section>
+
+          <section class="creer__step" data-step="profil">
+            <header class="creer__header">
+              <h1 class="creer__title">Ton profil</h1>
+            </header>
+
+            <form class="creer__form" id="form-profil" novalidate>
+              <div class="creer__photo">
+                <div class="creer__avatar" id="signup-avatar">
+                  <img id="signup-avatar-img" alt="" hidden />
+                  <span id="signup-avatar-fallback">A</span>
+                </div>
+                <input type="file" id="signup-photo-input" accept="image/*" hidden />
+                <button type="button" class="creer__btn-secondary" id="btn-photo">Ajouter une photo</button>
+              </div>
+
+              <div class="creer__field">
+                <label for="pseudo">Pseudo</label>
+                <input id="pseudo" name="pseudo" type="text" placeholder="Ton pseudo" autocomplete="nickname" />
+              </div>
+
+              <button type="submit" class="creer__btn">Valider</button>
+            </form>
+          </section>
+
+          <!-- Artiste -->
+          <section class="creer__step" data-step="artiste-code">
+            <header class="creer__header">
+              <h1 class="creer__title">Code artiste</h1>
+            </header>
+
+            <form class="creer__form" id="form-artiste-code" novalidate>
+              <div class="creer__field">
+                <label for="artist-code">Code artiste</label>
+                <input id="artist-code" name="artist-code" type="text" placeholder="Le code qu’on t’a donné" autocomplete="off" />
+              </div>
+              <button type="submit" class="creer__btn">Valider</button>
+            </form>
+          </section>
+
+          <section class="creer__step" data-step="artiste-infos">
+            <header class="creer__header">
+              <h1 class="creer__title">Ton compte</h1>
+            </header>
+
+            <form class="creer__form" id="form-artiste-infos" novalidate>
+              <div class="creer__field">
+                <label for="artist-email">Email</label>
+                <input id="artist-email" name="artist-email" type="email" placeholder="ton@email.com" autocomplete="email" />
+              </div>
+              <div class="creer__field">
+                <label for="artist-password">Mot de passe</label>
+                <input
+                  id="artist-password"
+                  name="artist-password"
+                  type="password"
+                  placeholder="••••••••"
+                  autocomplete="new-password"
+                />
+              </div>
+              <button type="submit" class="creer__btn">Valider</button>
+            </form>
+          </section>
+
+          <section class="creer__step" data-step="artiste-photo">
+            <header class="creer__header">
+              <h1 class="creer__title">Ton profil</h1>
+            </header>
+
+            <form class="creer__form" id="form-artiste-photo" novalidate>
+              <div class="creer__selfie">
+                <div class="creer__selfie-preview" id="selfie-preview">
+                  <img id="selfie-img" alt="" hidden />
+                  <span id="selfie-fallback">Photo</span>
+                </div>
+                <input type="file" id="selfie-input" accept="image/*" hidden />
+                <button type="button" class="creer__btn-secondary" id="btn-selfie">Ajouter une photo</button>
+              </div>
+
+              <div class="creer__field">
+                <label for="artist-pseudo">Pseudo</label>
+                <input id="artist-pseudo" name="artist-pseudo" type="text" placeholder="Ton pseudo" autocomplete="nickname" />
+              </div>
+
+              <button type="submit" class="creer__btn">Valider</button>
+            </form>
+          </section>
+
+          <section class="creer__step" data-step="bienvenue">
+            <header class="creer__header">
+              <h1 class="creer__title">Bienvenue <span id="welcome-name">!</span></h1>
+            </header>
+
+            <div class="creer__welcome">
+              <div class="creer__avatar creer__avatar--lg" id="welcome-avatar">
+                <img id="welcome-avatar-img" alt="" hidden />
+                <span id="welcome-avatar-fallback">A</span>
+              </div>
+              <button type="button" class="creer__btn" id="btn-welcome">C’est parti</button>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="./creer-un-compte.js"></script>
+  </body>
+</html>

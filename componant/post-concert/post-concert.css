@@ -1,0 +1,231 @@
+.post-concert {
+  --post-bg: #7d6b8f;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  height: auto;
+  flex-shrink: 0;
+  padding: 16px;
+  border-radius: var(--radius-card);
+  background: var(--post-bg);
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  isolation: isolate;
+}
+
+.post-concert__media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--post-bg) center / cover no-repeat;
+}
+
+.post-concert__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.18) 0%,
+    rgba(0, 0, 0, 0.08) 40%,
+    rgba(0, 0, 0, 0.72) 100%
+  );
+}
+
+.post-concert__top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.post-concert__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.post-concert__badge svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+.post-concert__badge--tonight {
+  background: #ffffff;
+  color: #0a0a0a;
+  text-transform: uppercase;
+}
+
+.post-concert__badge--count {
+  background: var(--overlay);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(8px);
+}
+
+.post-concert__badge--live {
+  color: #ff2d2d;
+  text-transform: uppercase;
+  background: rgba(20, 20, 20, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+}
+
+.post-concert__badge--live .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff2d2d;
+  flex-shrink: 0;
+  animation: post-live-pulse 1.4s ease-in-out infinite;
+}
+
+.post-concert__badge--views {
+  color: #ffffff;
+  background: rgba(20, 20, 20, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.post-concert__badge--views svg {
+  width: 14px;
+  height: 14px;
+  color: #ff2d2d;
+}
+
+@keyframes post-live-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.15;
+  }
+}
+
+.post-concert__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.post-concert__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.post-concert__title {
+  margin: 0;
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #ffffff;
+}
+
+.post-concert__status {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.post-concert__actions {
+  display: flex;
+  gap: 10px;
+}
+
+.post-concert__timer,
+.post-concert__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 18px;
+  border-radius: var(--radius-pill);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.post-concert__timer {
+  flex: 0 0 auto;
+  min-width: 128px;
+  color: #ffffff;
+  background: rgba(20, 20, 20, 0.55);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(8px);
+}
+
+.post-concert__timer svg {
+  width: 15px;
+  height: 15px;
+  color: var(--accent-danger);
+  flex-shrink: 0;
+}
+
+.post-concert__btn {
+  flex: 1;
+}
+
+.post-concert__btn--billetterie {
+  color: #0a0a0a;
+  background: #ffffff;
+}
+
+.post-concert__btn--locked {
+  color: rgba(255, 255, 255, 0.55);
+  background: #2a2a2a;
+}
+
+.post-concert__btn--locked svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.post-concert__btn--enter-live {
+  width: 100%;
+  color: #ffffff;
+  background: #e53935;
+  text-decoration: none;
+  animation: post-enter-breathe 1.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.post-concert__btn--enter-live svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.post-concert__btn--billetterie-live {
+  width: 100%;
+  color: #0a0a0a;
+  background: #ffffff;
+}
+
+@keyframes post-enter-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}

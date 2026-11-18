@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>Connexion</title>
+    <link rel="stylesheet" href="../../../styles/theme.css" />
+    <link rel="stylesheet" href="../../../styles/mobile.css" />
+    <link rel="stylesheet" href="../../../styles/auth-glow.css" />
+    <link rel="stylesheet" href="./connextion.css" />
+  </head>
+  <body>
+    <div class="app-shell" id="app">
+      <main class="connextion">
+        <div class="auth-glow" aria-hidden="true"></div>
+
+        <button type="button" class="connextion__back" id="btn-back">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Retour
+        </button>
+
+        <div class="connextion__body">
+          <header class="connextion__header">
+            <h1 class="connextion__title">Connexion</h1>
+          </header>
+
+          <form class="connextion__form" id="form-connextion" novalidate>
+            <div class="connextion__field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="ton@email.com" autocomplete="email" />
+            </div>
+
+            <div class="connextion__field">
+              <div class="connextion__label-row">
+                <label for="password">Mot de passe</label>
+                <button type="button" class="connextion__link">Oublié ?</button>
+              </div>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="••••••••"
+                autocomplete="current-password"
+              />
+            </div>
+
+            <button type="submit" class="connextion__btn">Connexion</button>
+          </form>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="./connextion.js"></script>
+  </body>
+</html>

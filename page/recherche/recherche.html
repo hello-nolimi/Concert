@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>Recherche</title>
+    <link rel="stylesheet" href="../../styles/theme.css" />
+    <link rel="stylesheet" href="../../styles/mobile.css" />
+    <link rel="stylesheet" href="../../componant/navbar/navbar.css" />
+    <link rel="stylesheet" href="./recherche.css" />
+  </head>
+  <body>
+    <div class="app-shell" id="app">
+      <main class="recherche">
+        <a class="recherche__back" href="../profil/profil.html">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Retour
+        </a>
+        <h1 class="recherche__title">Recherche</h1>
+
+        <label class="recherche__bar" for="search-input">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8" />
+            <path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+          <input
+            id="search-input"
+            class="recherche__input"
+            type="search"
+            placeholder="Artiste, salle ou concert..."
+            autocomplete="off"
+          />
+        </label>
+
+        <p class="recherche__empty" id="search-empty" hidden>Aucun résultat</p>
+
+        <section class="recherche__section" id="section-artistes" aria-labelledby="title-artistes">
+          <h2 class="recherche__section-title" id="title-artistes">Artistes connus</h2>
+          <div class="recherche__list" id="list-artistes"></div>
+        </section>
+
+        <section class="recherche__section" id="section-salles" aria-labelledby="title-salles">
+          <h2 class="recherche__section-title" id="title-salles">Salles connues</h2>
+          <div class="recherche__list" id="list-salles"></div>
+        </section>
+
+        <section class="recherche__section" id="section-concerts" aria-labelledby="title-concerts" hidden>
+          <h2 class="recherche__section-title" id="title-concerts">Concerts</h2>
+          <div class="recherche__list" id="list-concerts"></div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module">
+      import { mountNavbar } from '../../componant/navbar/navbar.js'
+      import { initRecherche } from './recherche.js'
+      import { posts } from '../../data/posts.js'
+
+      mountNavbar('#app', { brand: 'My Concert', active: 'recherche' })
+      initRecherche(posts)
+    </script>
+  </body>
+</html>
