@@ -17,11 +17,12 @@
 
       .accueil__hero {
         position: relative;
-        width: calc(100% + 100px);
-        max-width: none;
-        height: calc(100dvh - 180px);
-        margin-left: -50px;
+        width: calc(100% + 50px);
+        height: calc(100dvh - 170px);
+        margin: 76px 0 0 -25px;
+        border-radius: 24px;
         overflow: hidden;
+        background: #161616;
       }
 
       .accueil__slides {
@@ -57,23 +58,24 @@
         height: 100%;
         object-fit: cover;
         object-position: center;
+        pointer-events: none;
       }
 
       .accueil__slide-content {
         position: absolute;
-        left: 50px;
-        bottom: 52px;
+        left: 28px;
+        bottom: 28px;
         z-index: 2;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        gap: 8px;
         max-width: 460px;
       }
 
       .accueil__slide-artist {
         margin: 0;
-        font-size: 42px;
+        font-size: 28px;
         font-weight: 800;
         letter-spacing: -0.03em;
         line-height: 1;
@@ -91,7 +93,6 @@
         gap: 10px;
       }
 
-      .accueil__slide-timer,
       .accueil__slide-ticket {
         display: inline-flex;
         align-items: center;
@@ -106,18 +107,6 @@
         font-weight: 700;
         cursor: pointer;
         white-space: nowrap;
-      }
-
-      .accueil__slide-timer {
-        color: #fff;
-        background: rgba(20, 20, 20, 0.55);
-        border: 1px solid rgba(255, 255, 255, 0.22);
-      }
-
-      .accueil__slide-timer svg {
-        width: 15px;
-        height: 15px;
-        color: #e53935;
       }
 
       .accueil__slide-ticket {
@@ -177,21 +166,20 @@
 
       .accueil__hero-dots {
         position: absolute;
-        left: 50%;
-        bottom: 22px;
+        right: 28px;
+        bottom: 42px;
         z-index: 3;
         display: flex;
         gap: 8px;
-        transform: translateX(-50%);
       }
 
       .accueil__hero-dot {
-        width: 7px;
-        height: 7px;
+        width: 28px;
+        height: 3px;
         padding: 0;
         border: none;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.4);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.35);
         cursor: pointer;
       }
 
@@ -202,8 +190,31 @@
       .accueil__rubriques {
         display: flex;
         flex-direction: column;
-        gap: 72px;
+        gap: 48px;
         margin-top: 48px;
+      }
+
+      @media (min-width: 900px) {
+        .accueil__hero {
+          width: 100%;
+          height: calc(100dvh - 180px);
+          margin: 72px 0 0;
+          border-radius: 28px;
+        }
+
+        .accueil__slide-content {
+          left: 36px;
+          bottom: 36px;
+        }
+
+        .accueil__slide-artist {
+          font-size: 36px;
+        }
+
+        .accueil__hero-dots {
+          right: 36px;
+          bottom: 52px;
+        }
       }
 
       @media (max-width: 899px) {
@@ -226,12 +237,233 @@
         text-align: left;
       }
 
+      .accueil__rubrique-title--live {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .accueil__rubrique-title--live::before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #e53935;
+        flex-shrink: 0;
+      }
+
+      .accueil__prochain-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .accueil__week {
+        position: relative;
+        flex-shrink: 0;
+      }
+
+      .accueil__week-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        height: 32px;
+        padding: 0;
+        border: none;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.78);
+        font: inherit;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      .accueil__week-btn svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .accueil__week-panel {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        z-index: 6;
+        width: 190px;
+        max-height: 280px;
+        overflow: auto;
+        padding: 10px;
+        border-radius: 14px;
+        background: #1c1c1c;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+      }
+
+      .accueil__week-panel[hidden] {
+        display: none;
+      }
+
+      .accueil__week-year {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 6px;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .accueil__week-year button {
+        width: 28px;
+        height: 28px;
+        border: none;
+        border-radius: 8px;
+        background: transparent;
+        color: #fff;
+        font: inherit;
+        font-size: 18px;
+        cursor: pointer;
+      }
+
+      .accueil__week-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .accueil__week-option {
+        width: 100%;
+        padding: 8px 10px;
+        border: none;
+        border-radius: 8px;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.82);
+        font: inherit;
+        font-size: 14px;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .accueil__week-option.is-active,
+      .accueil__week-option:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+      }
+
+      .accueil__schedule {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .accueil__slot {
+        --slot-line: 78px;
+        position: relative;
+        display: grid;
+        grid-template-columns: 64px 48px 40px minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .accueil__slot--continued {
+        border-bottom-color: transparent;
+      }
+
+      .accueil__slot--continued::after {
+        content: "";
+        position: absolute;
+        left: var(--slot-line);
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .accueil__slot-date {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-height: 42px;
+      }
+
+      .accueil__slot-date strong {
+        font-size: 28px;
+        font-weight: 500;
+        letter-spacing: -0.03em;
+        line-height: 1;
+      }
+
+      .accueil__slot-date span,
+      .accueil__slot-time,
+      .accueil__slot-info span {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.55);
+      }
+
+      .accueil__slot-time {
+        font-size: 14px;
+      }
+
+      .accueil__slot-thumb {
+        display: block;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        object-fit: cover;
+        background: #2a2a2a;
+      }
+
+      .accueil__slot-info {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .accueil__slot-info strong {
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .accueil__slot-btn {
+        height: 32px;
+        padding: 0 14px;
+        border: none;
+        border-radius: 999px;
+        background: #3a3a3a;
+        color: rgba(255, 255, 255, 0.88);
+        font: inherit;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+
+      .accueil__schedule-empty {
+        margin: 0;
+        padding: 8px 0 4px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.55);
+      }
+
+      @media (max-width: 899px) {
+        .accueil__slot {
+          --slot-line: 62px;
+          grid-template-columns: 52px 42px 36px minmax(0, 1fr) auto;
+          gap: 10px;
+        }
+
+        .accueil__slot-date strong {
+          font-size: 24px;
+        }
+      }
+
       .accueil__rail {
         display: flex;
         gap: 28px;
         width: calc(100% + 50px);
         margin-right: -50px;
         overflow-x: auto;
+        overscroll-behavior-x: contain;
+        touch-action: pan-x pan-y;
         padding-bottom: 4px;
         scrollbar-width: none;
       }
@@ -241,66 +473,8 @@
       }
 
       .accueil__rail .post-concert {
-        flex: 0 0 250px;
-        width: 250px;
-        padding: 12px;
-        border-radius: 20px;
-      }
-
-      .accueil__rail .post-concert__top {
-        gap: 6px;
-      }
-
-      .accueil__rail .post-concert__badge {
-        gap: 4px;
-        padding: 5px 8px;
-        font-size: 10px;
-      }
-
-      .accueil__rail .post-concert__badge svg,
-      .accueil__rail .post-concert__badge--views svg {
-        width: 11px;
-        height: 11px;
-      }
-
-      .accueil__rail .post-concert__badge--live .dot {
-        width: 6px;
-        height: 6px;
-      }
-
-      .accueil__rail .post-concert__bottom {
-        gap: 10px;
-      }
-
-      .accueil__rail .post-concert__title {
-        font-size: 26px;
-      }
-
-      .accueil__rail .post-concert__status {
-        font-size: 13px;
-      }
-
-      .accueil__rail .post-concert__actions {
-        gap: 6px;
-      }
-
-      .accueil__rail .post-concert__timer,
-      .accueil__rail .post-concert__btn {
-        height: 34px;
-        padding: 0 10px;
-        gap: 5px;
-        font-size: 12px;
-      }
-
-      .accueil__rail .post-concert__timer {
-        min-width: 0;
-      }
-
-      .accueil__rail .post-concert__timer svg,
-      .accueil__rail .post-concert__btn--locked svg,
-      .accueil__rail .post-concert__btn--enter-live svg {
-        width: 12px;
-        height: 12px;
+        flex: 0 0 210px;
+        width: 210px;
       }
 
       .accueil__artistes .post-artiste {
@@ -341,18 +515,34 @@
 
         <div class="accueil__rubriques">
           <section class="accueil__rubrique" aria-labelledby="title-live">
-            <h2 class="accueil__rubrique-title" id="title-live">En directe</h2>
+            <h2 class="accueil__rubrique-title accueil__rubrique-title--live" id="title-live">En directe</h2>
             <div class="accueil__rail" id="rail-live"></div>
           </section>
 
           <section class="accueil__rubrique" aria-labelledby="title-attendus">
-            <h2 class="accueil__rubrique-title" id="title-attendus">Les plus attendus</h2>
+            <h2 class="accueil__rubrique-title" id="title-attendus">A ne pas rater</h2>
             <div class="accueil__rail" id="rail-attendus"></div>
           </section>
 
           <section class="accueil__rubrique" aria-labelledby="title-prochainement">
-            <h2 class="accueil__rubrique-title" id="title-prochainement">Prochainement</h2>
-            <div class="accueil__rail" id="rail-prochainement"></div>
+            <div class="accueil__prochain-head">
+              <h2 class="accueil__rubrique-title" id="title-prochainement">Prochainement</h2>
+              <div class="accueil__week">
+                <button type="button" class="accueil__week-btn" id="week-btn" aria-expanded="false" aria-haspopup="listbox">
+                  <span id="week-label">Semaine</span>
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="accueil__week-panel" id="week-panel" hidden>
+                  <div class="accueil__week-year">
+                    <button type="button" id="year-prev" aria-label="Année précédente">‹</button>
+                    <span id="year-label"></span>
+                    <button type="button" id="year-next" aria-label="Année suivante">›</button>
+                  </div>
+                  <div class="accueil__week-list" id="week-list" role="listbox" aria-label="Semaines"></div>
+                </div>
+              </div>
+            </div>
+            <div class="accueil__schedule" id="schedule"></div>
           </section>
 
           <section class="accueil__rubrique" aria-labelledby="title-artistes">

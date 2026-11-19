@@ -39,6 +39,13 @@
 }
 
 @media (max-width: 899px) {
+  html,
+  body,
+  .app-shell > .accueil {
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
+  }
+
   .app-shell > .mes-billets,
   .app-shell > .profil,
   .app-shell > .parametres {

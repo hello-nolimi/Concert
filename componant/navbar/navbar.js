@@ -55,7 +55,7 @@ export function createNavbar({ brand = 'My Concert', active = '' } = {}) {
 
   const loggedIn = isLoggedIn()
   const accountLinks = loggedIn
-    ? `<a class="navbar__auth-link navbar__auth-link--solid" href="../profil/profil.html">Profil</a>`
+    ? `<a class="navbar__auth-icon" href="../profil/profil.html" aria-label="Profil">${ICONS.profil}</a>`
     : `
         <a class="navbar__auth-link" href="../connextion-creer-un-compte/creer-un-compte/creer-un-compte.html">Créer un compte</a>
         <a class="navbar__auth-link navbar__auth-link--solid" href="../connextion-creer-un-compte/connextion/connextion.html">Se connecter</a>
