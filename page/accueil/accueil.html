@@ -17,9 +17,9 @@
 
       .accueil__hero {
         position: relative;
-        width: calc(100% + 50px);
+        width: 100%;
         height: calc(100dvh - 170px);
-        margin: 76px 0 0 -25px;
+        margin: 76px 0 0;
         border-radius: 24px;
         overflow: hidden;
         background: #161616;
@@ -218,8 +218,8 @@
       }
 
       @media (max-width: 899px) {
-        .accueil__rubriques {
-          margin-left: -25px;
+        .accueil__hero-zone {
+          display: none;
         }
       }
 
@@ -475,6 +475,23 @@
       .accueil__rail .post-concert {
         flex: 0 0 210px;
         width: 210px;
+      }
+
+      @media (max-width: 899px) {
+        .accueil__rail {
+          width: calc(100% + 32px);
+          margin-left: -16px;
+          margin-right: -16px;
+          padding-left: 16px;
+        }
+      }
+
+      @media (min-width: 900px) {
+        .accueil__rail {
+          width: calc(100% + 100px);
+          margin-left: -50px;
+          padding-left: 50px;
+        }
       }
 
       .accueil__artistes .post-artiste {

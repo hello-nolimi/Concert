@@ -8,104 +8,276 @@
     <link rel="stylesheet" href="../../styles/mobile.css" />
     <link rel="stylesheet" href="../../componant/navbar/navbar.css" />
     <link rel="stylesheet" href="./profil.css" />
+    <link rel="stylesheet" href="../mes-billets/mes-billets.css" />
+    <link rel="stylesheet" href="../parametres/parametres.css" />
+    <link rel="stylesheet" href="./compte.css" />
+    <script>
+      (function () {
+        var view = location.hash.replace('#', '')
+        if (view === 'billets' || view === 'parametres') document.documentElement.dataset.compte = view
+      })()
+    </script>
   </head>
   <body>
     <div class="app-shell" id="app">
-      <div class="profil" id="profil-root">
-        <section class="profil__panel is-active" data-panel="home">
-          <header class="profil__header">
-            <div class="profil__avatar" id="profil-avatar">
-              <img id="profil-avatar-img" alt="" hidden />
-              <span id="profil-avatar-fallback">A</span>
-            </div>
-            <div class="profil__identity">
-              <h1 class="profil__name" id="profil-name">Alex</h1>
-              <p class="profil__email">alex@myconcert.app</p>
-            </div>
-            <a class="profil__gear" href="../parametres/parametres.html" aria-label="Paramètres">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8" />
-                <path d="M12 3.5v2.2M12 18.3v2.2M4.9 6.5l1.6 1.6M17.5 15.9l1.6 1.6M3.5 12h2.2M18.3 12h2.2M4.9 17.5l1.6-1.6M17.5 8.1l1.6-1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-              </svg>
-            </a>
-          </header>
+      <main class="compte">
+        <nav class="compte__switch" aria-label="Espace personnel">
+          <span class="compte__pill" aria-hidden="true"></span>
+          <button type="button" data-compte="profil" class="is-active" aria-current="page">Profil</button>
+          <button type="button" data-compte="billets">Mes billets</button>
+          <button type="button" data-compte="parametres">Paramètres</button>
+        </nav>
 
-          <a class="profil__tickets" href="../mes-billets/mes-billets.html">
-            <span class="profil__tickets-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M4 8.5A2.5 2.5 0 0 0 6.5 11 2.5 2.5 0 0 1 4 13.5V18a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4.5A2.5 2.5 0 0 1 17.5 11 2.5 2.5 0 0 0 20 8.5V6a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v2.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
-                <path d="M12 7v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="2 3" />
-              </svg>
-            </span>
-            <span class="profil__tickets-copy">
-              <strong>Mes billets</strong>
-              <span>Voir les concerts achetés</span>
-            </span>
-            <svg class="profil__tickets-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </a>
+        <div class="compte__view is-active" data-compte-view="profil">
+          <div class="profil" id="profil-root">
+            <section class="profil__panel is-active" data-panel="home">
+              <header class="profil__header">
+                <div class="profil__avatar" id="profil-avatar">
+                  <img id="profil-avatar-img" alt="" hidden />
+                  <span id="profil-avatar-fallback">A</span>
+                </div>
+                <div class="profil__identity">
+                  <h1 class="profil__name" id="profil-name">Alex</h1>
+                  <p class="profil__meta-line" id="profil-meta">@alex · Membre depuis novembre 2025</p>
+                </div>
+              </header>
 
-          <section class="profil__stats" aria-label="Statistiques">
-            <div class="profil__stat">
-              <strong id="stat-billets">0</strong>
-              <span>Billets achetés</span>
+              <section class="profil__stats" aria-label="Statistiques">
+                <button type="button" class="profil__stat" data-stat="billets">
+                  <strong id="stat-billets">0</strong>
+                  <span>Concerts achetés</span>
+                </button>
+                <button type="button" class="profil__stat" data-stat="artistes">
+                  <strong id="stat-artistes">0</strong>
+                  <span>Artistes suivis</span>
+                </button>
+                <button type="button" class="profil__stat" data-stat="salles">
+                  <strong id="stat-salles">0</strong>
+                  <span>Salles suivies</span>
+                </button>
+              </section>
+
+              <section class="profil__section" aria-labelledby="title-artistes">
+                <h2 class="profil__section-title" id="title-artistes">Artistes suivis</h2>
+                <div class="profil__list" id="list-artistes"></div>
+                <button type="button" class="profil__more" data-open="artistes">Afficher plus</button>
+              </section>
+
+              <section class="profil__section" aria-labelledby="title-salles">
+                <h2 class="profil__section-title" id="title-salles">Salles suivies</h2>
+                <div class="profil__list" id="list-salles"></div>
+                <button type="button" class="profil__more" data-open="salles">Afficher plus</button>
+              </section>
+            </section>
+
+            <section class="profil__panel" data-panel="artistes">
+              <button type="button" class="profil__back" data-back>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Retour
+              </button>
+              <h1 class="profil__panel-title">Artistes suivis</h1>
+              <div class="profil__list" id="list-artistes-full"></div>
+            </section>
+
+            <div class="profil__dialog" id="follow-dialog" hidden>
+              <div class="profil__dialog-backdrop" data-follow-close></div>
+              <div class="profil__sheet" role="dialog" aria-modal="true" aria-labelledby="follow-dialog-title">
+                <header class="profil__sheet-head">
+                  <h2 id="follow-dialog-title"></h2>
+                  <button type="button" class="profil__sheet-close" data-follow-close aria-label="Fermer">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  </button>
+                </header>
+                <div class="profil__list" id="follow-dialog-list"></div>
+              </div>
             </div>
-            <div class="profil__stat">
-              <strong id="stat-lives">0</strong>
-              <span>Lives vus</span>
+
+            <section class="profil__panel" data-panel="salles">
+              <button type="button" class="profil__back" data-back>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Retour
+              </button>
+              <h1 class="profil__panel-title">Salles suivies</h1>
+              <div class="profil__list" id="list-salles-full"></div>
+            </section>
+          </div>
+        </div>
+
+        <div class="compte__view" data-compte-view="billets">
+          <div class="mes-billets">
+            <header class="mes-billets__head">
+              <div>
+                <h1 class="mes-billets__title">Mes billets</h1>
+                <p class="mes-billets__summary" id="billets-summary"></p>
+              </div>
+              <button type="button" class="mes-billets__invoices">Mes factures</button>
+            </header>
+            <div class="mes-billets__upcoming" id="billets-upcoming"></div>
+            <section class="mes-billets__past-block" id="billets-past-block">
+              <h2 class="mes-billets__past-title">Passés</h2>
+              <div class="mes-billets__past" id="billets-past"></div>
+            </section>
+          </div>
+        </div>
+
+        <div class="compte__view" data-compte-view="parametres">
+          <div class="parametres">
+            <h1 class="parametres__title">Paramètres</h1>
+
+            <section class="parametres__block" aria-labelledby="title-compte">
+              <h2 class="parametres__label" id="title-compte">Compte</h2>
+              <div class="parametres__card">
+                <div class="parametres__row">
+                  <div class="parametres__avatar" id="profile-avatar" aria-hidden="true">
+                    <img id="profile-avatar-img" alt="" hidden />
+                    <span id="profile-avatar-fallback">A</span>
+                  </div>
+                  <div class="parametres__grow">
+                    <strong>Photo de profil</strong>
+                    <span class="parametres__sub" id="profile-name">Alex</span>
+                  </div>
+                  <input type="file" id="profile-photo-input" accept="image/*" hidden />
+                  <button type="button" class="parametres__mini" id="btn-profile-photo">Modifier</button>
+                </div>
+                <div class="parametres__row" id="email-row">
+                  <div class="parametres__grow">
+                    <strong>E-mail</strong>
+                    <span class="parametres__sub" id="email-label">alex@myconcert.app</span>
+                    <input class="parametres__inline-field" id="email" type="email" value="alex@myconcert.app" />
+                  </div>
+                  <button type="button" class="parametres__mini" id="btn-email" data-mode="edit">Modifier</button>
+                </div>
+                <div class="parametres__row" id="password-row">
+                  <div class="parametres__grow">
+                    <strong>Mot de passe</strong>
+                    <span class="parametres__sub" id="password-label">Modifié il y a 3 mois</span>
+                    <input class="parametres__inline-field" id="password" type="password" placeholder="Nouveau mot de passe" autocomplete="new-password" />
+                  </div>
+                  <button type="button" class="parametres__mini" id="btn-password" data-mode="edit">Modifier</button>
+                </div>
+              </div>
+            </section>
+
+            <section class="parametres__block" aria-labelledby="title-notifs">
+              <h2 class="parametres__label" id="title-notifs">Notifications</h2>
+              <div class="parametres__card">
+                <label class="parametres__row">
+                  <span class="parametres__grow">
+                    <strong>Rappel avant un concert</strong>
+                    <span class="parametres__sub">30 minutes avant l'ouverture</span>
+                  </span>
+                  <span class="parametres__toggle">
+                    <input type="checkbox" data-setting="reminder" checked />
+                    <i></i>
+                  </span>
+                </label>
+                <label class="parametres__row">
+                  <span class="parametres__grow">
+                    <strong>Nouveaux concerts</strong>
+                    <span class="parametres__sub">De mes artistes suivis</span>
+                  </span>
+                  <span class="parametres__toggle">
+                    <input type="checkbox" data-setting="newShows" checked />
+                    <i></i>
+                  </span>
+                </label>
+                <label class="parametres__row">
+                  <span class="parametres__grow">
+                    <strong>Replays disponibles</strong>
+                    <span class="parametres__sub">Quand un concert vu repasse en replay</span>
+                  </span>
+                  <span class="parametres__toggle">
+                    <input type="checkbox" data-setting="replays" />
+                    <i></i>
+                  </span>
+                </label>
+              </div>
+            </section>
+
+            <section class="parametres__block" aria-labelledby="title-lecture">
+              <h2 class="parametres__label" id="title-lecture">Lecture</h2>
+              <div class="parametres__card">
+                <div class="parametres__row">
+                  <span class="parametres__grow">
+                    <strong>Qualité vidéo</strong>
+                    <span class="parametres__sub">Auto s'adapte à la connexion</span>
+                  </span>
+                  <div class="parametres__quality" role="radiogroup" aria-label="Qualité vidéo">
+                    <button type="button" data-quality="auto" class="is-active">Auto</button>
+                    <button type="button" data-quality="hd">HD</button>
+                    <button type="button" data-quality="full">Full HD</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="parametres__block" aria-labelledby="title-paiement">
+              <h2 class="parametres__label" id="title-paiement">Paiement</h2>
+              <div class="parametres__card">
+                <div class="parametres__row">
+                  <span class="parametres__grow">
+                    <strong>Carte bancaire</strong>
+                    <span class="parametres__sub">Visa •••• 4242</span>
+                  </span>
+                  <button type="button" class="parametres__mini">Modifier</button>
+                </div>
+                <div class="parametres__row">
+                  <span class="parametres__grow">
+                    <strong>Factures</strong>
+                    <span class="parametres__sub">Tous tes achats de billets</span>
+                  </span>
+                  <button type="button" class="parametres__mini">Télécharger</button>
+                </div>
+              </div>
+            </section>
+
+            <div class="parametres__footer">
+              <button type="button" class="parametres__logout" id="btn-logout">Se déconnecter</button>
+              <button type="button" class="parametres__delete" id="btn-delete">Supprimer mon compte</button>
             </div>
-            <div class="profil__stat">
-              <strong id="stat-artistes">0</strong>
-              <span>Artistes suivis</span>
+          </div>
+
+          <div class="parametres__dialog" id="logout-dialog" hidden>
+            <div class="parametres__dialog-backdrop" data-logout-cancel></div>
+            <div class="parametres__dialog-card" role="dialog" aria-modal="true" aria-labelledby="logout-title">
+              <h2 class="parametres__dialog-title" id="logout-title">Se déconnecter ?</h2>
+              <p class="parametres__dialog-text">Tu vas quitter ton compte. Tu pourras te reconnecter à tout moment.</p>
+              <div class="parametres__dialog-actions">
+                <button type="button" class="parametres__btn parametres__btn--ghost" data-logout-cancel>Annuler</button>
+                <button type="button" class="parametres__btn parametres__btn--primary" id="btn-logout-confirm">Se déconnecter</button>
+              </div>
             </div>
-            <div class="profil__stat">
-              <strong id="stat-salles">0</strong>
-              <span>Salles suivies</span>
+          </div>
+
+          <div class="parametres__dialog" id="delete-dialog" hidden>
+            <div class="parametres__dialog-backdrop" data-delete-cancel></div>
+            <div class="parametres__dialog-card" role="dialog" aria-modal="true" aria-labelledby="delete-title">
+              <h2 class="parametres__dialog-title" id="delete-title">Supprimer mon compte ?</h2>
+              <p class="parametres__dialog-text">Ton profil local sera effacé sur cet appareil.</p>
+              <div class="parametres__dialog-actions">
+                <button type="button" class="parametres__btn parametres__btn--ghost" data-delete-cancel>Annuler</button>
+                <button type="button" class="parametres__btn parametres__btn--primary" id="btn-delete-confirm">Supprimer</button>
+              </div>
             </div>
-          </section>
-
-          <section class="profil__section" aria-labelledby="title-artistes">
-            <h2 class="profil__section-title" id="title-artistes">Artistes suivis</h2>
-            <div class="profil__list" id="list-artistes"></div>
-            <button type="button" class="profil__more" data-open="artistes">Afficher plus</button>
-          </section>
-
-          <section class="profil__section" aria-labelledby="title-salles">
-            <h2 class="profil__section-title" id="title-salles">Salles suivies</h2>
-            <div class="profil__list" id="list-salles"></div>
-            <button type="button" class="profil__more" data-open="salles">Afficher plus</button>
-          </section>
-        </section>
-
-        <section class="profil__panel" data-panel="artistes">
-          <button type="button" class="profil__back" data-back>
-            <svg viewBox="0 0 24 24" fill="none"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Retour
-          </button>
-          <h1 class="profil__panel-title">Artistes suivis</h1>
-          <div class="profil__list" id="list-artistes-full"></div>
-        </section>
-
-        <section class="profil__panel" data-panel="salles">
-          <button type="button" class="profil__back" data-back>
-            <svg viewBox="0 0 24 24" fill="none"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Retour
-          </button>
-          <h1 class="profil__panel-title">Salles suivies</h1>
-          <div class="profil__list" id="list-salles-full"></div>
-        </section>
-      </div>
+          </div>
+        </div>
+      </main>
     </div>
 
     <script type="module">
       import { mountNavbar } from '../../componant/navbar/navbar.js'
-      import { initProfil } from './profil.js'
+      import { initProfil } from './profil.js?v=stats'
+      import { initCompte } from './compte.js'
+      import { initMesBillets } from '../mes-billets/mes-billets.js?v=2'
+      import { initParametres } from '../parametres/parametres.js?v=2'
       import { posts } from '../../data/posts.js'
       import { followedArtists, followedSalles } from '../../data/follows.js'
 
       mountNavbar('#app', { brand: 'My Concert', active: 'profil' })
       initProfil({ posts, followedArtists, followedSalles })
+      initMesBillets(posts)
+      initParametres()
+      initCompte()
     </script>
   </body>
 </html>

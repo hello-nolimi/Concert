@@ -46,11 +46,18 @@
     overscroll-behavior-x: none;
   }
 
+  .app-shell > .accueil,
+  .app-shell > .live-page,
   .app-shell > .mes-billets,
+  .app-shell > .recherche,
   .app-shell > .profil,
-  .app-shell > .parametres {
-    padding-left: 25px;
-    padding-right: 25px;
+  .app-shell > .compte,
+  .app-shell > .parametres,
+  .app-shell > .connextion,
+  .app-shell > .creer,
+  .app-shell > .page-empty {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }
 
@@ -77,6 +84,7 @@
   .app-shell:has(> .navbar) > .accueil,
   .app-shell:has(> .navbar) > .recherche,
   .app-shell:has(> .navbar) > .mes-billets,
+  .app-shell:has(> .navbar) > .compte,
   .app-shell:has(> .navbar) > .profil,
   .app-shell:has(> .navbar) > .parametres {
     min-width: 0;
@@ -85,18 +93,25 @@
   }
 
   .app-shell:has(> .navbar) > .accueil,
-  .app-shell:has(> .navbar) > .recherche {
+  .app-shell:has(> .navbar) > .recherche,
+  .app-shell:has(> .navbar) > .mes-billets,
+  .app-shell:has(> .navbar) > .compte {
     margin-left: 0;
     margin-right: 0;
     width: 100%;
     max-width: none;
   }
 
-  .app-shell:has(> .navbar) > .mes-billets,
-  .app-shell:has(> .navbar) > .profil,
-  .app-shell:has(> .navbar) > .parametres {
+  .app-shell:has(> .navbar) > .profil {
     width: min(820px, 100%);
     max-width: 820px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .app-shell:has(> .navbar) > .parametres {
+    width: min(640px, 100%);
+    max-width: 640px;
     margin-left: auto;
     margin-right: auto;
   }

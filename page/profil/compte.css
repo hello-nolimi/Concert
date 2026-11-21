@@ -1,0 +1,137 @@
+.compte {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 90px 0 48px;
+}
+
+.compte__switch {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  margin: 0 auto 22px;
+  padding: 4px;
+  border-radius: 999px;
+  background: #2c2c2c;
+}
+
+.compte__pill {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  height: 34px;
+  border-radius: 999px;
+  background: #fff;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.compte__switch button {
+  position: relative;
+  z-index: 1;
+  height: 34px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.compte__switch button.is-active {
+  color: #111;
+}
+
+.compte__view {
+  display: none;
+}
+
+.compte__view.is-active {
+  display: block;
+}
+
+.compte__view.is-active[data-dir="next"] {
+  animation: compte-next 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.compte__view.is-active[data-dir="prev"] {
+  animation: compte-prev 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes compte-next {
+  from {
+    opacity: 0;
+    transform: translateX(36px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes compte-prev {
+  from {
+    opacity: 0;
+    transform: translateX(-36px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+html[data-compte="billets"] .compte__view.is-active,
+html[data-compte="parametres"] .compte__view.is-active {
+  display: none;
+}
+
+html[data-compte="billets"] [data-compte-view="billets"],
+html[data-compte="parametres"] [data-compte-view="parametres"] {
+  display: block;
+}
+
+.compte .profil,
+.compte .mes-billets,
+.compte .parametres {
+  overflow: visible;
+  flex: none;
+  min-height: auto;
+  height: auto;
+  padding-top: 8px;
+}
+
+.compte .profil,
+.compte .mes-billets {
+  width: min(720px, 100%);
+  margin: 0 auto;
+}
+
+.compte .profil__panel {
+  overflow: visible;
+  flex: none;
+  min-height: auto;
+  padding-top: 10px;
+  max-width: none;
+}
+
+.compte .parametres {
+  width: min(640px, 100%);
+  margin: 0 auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .compte__pill,
+  .compte__switch button,
+  .compte__view.is-active[data-dir="next"],
+  .compte__view.is-active[data-dir="prev"] {
+    transition: none;
+    animation: none;
+  }
+}

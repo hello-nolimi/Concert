@@ -21,18 +21,48 @@
   display: flex;
 }
 
-.profil__header {
+.profil__switch {
+  align-self: center;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 999px;
+  background: #2c2c2c;
+}
+
+.profil__switch a {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 16px;
+  border-radius: 999px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.profil__switch a.is-active {
+  background: #fff;
+  color: #111;
+}
+
+.profil__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
 }
 
 .profil__avatar {
-  width: 72px;
-  height: 72px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   overflow: hidden;
-  background: var(--bg-elevated);
+  background: #3a3a3a;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -46,115 +76,56 @@
 }
 
 .profil__avatar span {
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--text-muted);
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: #fff;
 }
 
 .profil__identity {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  flex: 1;
-}
-
-.profil__gear {
-  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  margin-left: 8px;
-  color: var(--text-primary);
-  text-decoration: none;
-  flex-shrink: 0;
-}
-
-.profil__gear svg {
-  width: 22px;
-  height: 22px;
-}
-
-.profil__tickets {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px 16px;
-  border-radius: 18px;
-  background: var(--bg-card-ui);
-  color: var(--text-primary);
-  text-decoration: none;
-}
-
-.profil__tickets-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
-  background: #fff;
-  color: #0a0a0a;
-  flex-shrink: 0;
-}
-
-.profil__tickets-icon svg {
-  width: 22px;
-  height: 22px;
-}
-
-.profil__tickets-copy {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.profil__tickets-copy strong {
-  font-size: 15px;
-  font-weight: 700;
-}
-
-.profil__tickets-copy span {
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-.profil__tickets-chevron {
-  width: 18px;
-  height: 18px;
-  margin-left: auto;
-  color: var(--text-muted);
-  flex-shrink: 0;
+  gap: 6px;
 }
 
 .profil__name {
   margin: 0;
-  font-size: 22px;
+  font-size: 32px;
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
-.profil__email {
+.profil__meta-line {
   margin: 0;
-  font-size: 13px;
-  color: var(--text-muted);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.55);
 }
 
 .profil__stats {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
 }
 
 .profil__stat {
-  padding: 14px;
-  border-radius: 16px;
-  background: var(--bg-card-ui);
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 4px;
+  padding: 8px 4px;
+  border: none;
+  border-radius: 14px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+
+.profil__stat:hover {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .profil__stat strong {
@@ -216,12 +187,22 @@
   overflow: hidden;
 }
 
+.profil__list.is-empty {
+  background: transparent;
+}
+
 .profil__item {
   display: flex;
   align-items: center;
   gap: 12px;
+  width: 100%;
   padding: 12px 14px;
+  border: none;
   border-bottom: 1px solid var(--border-row);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
 }
 
 .profil__item:last-child {
@@ -269,16 +250,22 @@
 }
 
 .profil__follow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
   margin-left: auto;
+  min-width: 72px;
   height: 32px;
-  padding: 0 12px;
+  padding: 0 14px;
   border: none;
   border-radius: 999px;
   background: var(--accent);
   color: var(--text-inverse);
   font: inherit;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
+  line-height: 1;
   cursor: default;
   white-space: nowrap;
 }
@@ -300,14 +287,103 @@
   color: var(--text-primary);
 }
 
+.profil__empty {
+  margin: 0;
+  padding: 16px 14px;
+  border-radius: 18px;
+  background: var(--bg-card-ui);
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.profil__dialog[hidden] {
+  display: none;
+}
+
+.profil__dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+}
+
+.profil__dialog-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.profil__sheet {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(440px, calc(100% - 32px));
+  max-height: min(70dvh, 560px);
+  margin: 14vh auto 0;
+  padding: 8px;
+  border-radius: 20px;
+  background: #171717;
+  color: #fff;
+}
+
+.profil__sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 8px 12px 12px;
+}
+
+.profil__sheet-head h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.profil__sheet-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: #2c2c2c;
+  color: #fff;
+  cursor: pointer;
+}
+
+.profil__sheet-close svg {
+  width: 16px;
+  height: 16px;
+}
+
+.profil__sheet .profil__list {
+  overflow-y: auto;
+  background: transparent;
+}
+
+.profil__unfollow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: auto;
+  height: 32px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 999px;
+  background: #fff;
+  color: #111;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
 @media (min-width: 900px) {
   .profil__panel {
     padding: 100px 0 40px;
     gap: 28px;
     max-width: 720px;
-  }
-
-  .profil__stats {
-    grid-template-columns: repeat(4, 1fr);
   }
 }
